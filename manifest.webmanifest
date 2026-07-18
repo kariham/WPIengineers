@@ -1,11 +1,14 @@
 {
   "short_name": "WPI Tool",
   "name": "WPI Inspectie Tool QHSE",
-  "icons": [
     {
-      "src": "assets/icon.png",
-      "type": "image/png",
-      "sizes": "268x102"
+      "icons": [
+  {
+    "src": "assets/logo.png",
+    "type": "image/png",
+    "sizes": "any"
+  }
+]
     }
   ],
   "start_url": "./index.html",
