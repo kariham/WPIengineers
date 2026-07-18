@@ -1,1 +1,44 @@
-WPI Inspecties [Image blocked: Logo]
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPI Inspecties</title>
+    
+    <!-- Koppel je manifest voor de PWA -->
+    <link rel="manifest" href="manifest.webmanifest">
+    
+    <!-- Koppel je stylesheet (check even of de bestandsnaam klopt met wat er in je map staat) -->
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>WPI Inspecties</h1>
+        <!-- Hier kun je later een echt logo toevoegen, bijvoorbeeld: -->
+        <!-- <img src="assets/logo.png" alt="WPI Inspecties Logo"> -->
+    </header>
+
+    <main>
+        <p>De applicatie wordt geladen...</p>
+    </main>
+
+    <!-- Koppel je JavaScript bestand (check ook hier de bestandsnaam) -->
+    <script src="js/main.js"></script>
+
+    <!-- Registreer de Service Worker (noodzakelijk voor een offline PWA) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker succesvol geregistreerd.');
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registratie mislukt:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
