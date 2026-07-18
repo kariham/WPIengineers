@@ -5,7 +5,7 @@
     {
       "src": "assets/icon.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "any"
     }
   ],
   "start_url": "./index.html",
