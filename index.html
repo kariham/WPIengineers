@@ -6,7 +6,6 @@
     <title>WPI Inspecties - QHSE</title>
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="styles/style.css">
-    <!-- html2pdf bibliotheek voor het genereren van de PDF's -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
@@ -17,7 +16,6 @@
     </header>
 
     <main>
-        <!-- Selectie van de inspectie -->
         <section id="inspection-selector">
             <h2>Kies een Werkplekinspectie</h2>
             <button onclick="showInspection('engineers')">WPI Engineers</button>
@@ -25,7 +23,6 @@
             <button onclick="showInspection('brand')">WPI Gebouw & Brandveiligheid</button>
         </section>
 
-        <!-- Het inspectieformulier -->
         <form id="wpi-form" class="hidden">
             <div class="meta-data">
                 <h3>Algemene Gegevens</h3>
@@ -34,9 +31,7 @@
                 <label>Locatie/Project: <input type="text" id="inspection_location" required></label>
             </div>
 
-            <div id="form-questions">
-                <!-- Vragen worden hier dynamisch ingeladen via JS -->
-            </div>
+            <div id="form-questions"></div>
 
             <div class="form-actions">
                 <button type="button" class="btn-secondary" onclick="resetForm()">Annuleren</button>
@@ -45,9 +40,9 @@
         </form>
     </main>
 
+    <!-- JavaScript pas inladen als de HTML volledig is opgebouwd -->
     <script src="js/main.js"></script>
     <script>
-        // Registreer de Service Worker voor offline gebruik
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js').catch(err => console.error(err));
