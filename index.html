@@ -3,40 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WPI Inspecties</title>
-    
-    <!-- Koppel je manifest voor de PWA -->
+    <title>WPI Inspecties - QHSE</title>
     <link rel="manifest" href="manifest.webmanifest">
-    
-    <!-- Koppel je stylesheet (check even of de bestandsnaam klopt met wat er in je map staat) -->
     <link rel="stylesheet" href="styles/style.css">
+    <!-- html2pdf bibliotheek voor het genereren van de PDF's -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
     <header>
         <h1>WPI Inspecties</h1>
-        <!-- Hier kun je later een echt logo toevoegen, bijvoorbeeld: -->
-        <!-- <img src="assets/logo.png" alt="WPI Inspecties Logo"> -->
+        <p>QHSE Management Tool</p>
     </header>
 
     <main>
-        <p>De applicatie wordt geladen...</p>
+        <!-- Selectie van de inspectie -->
+        <section id="inspection-selector">
+            <h2>Kies een Werkplekinspectie</h2>
+            <button onclick="showInspection('engineers')">WPI Engineers</button>
+            <button onclick="showInspection('seveso')">WPI Magazijn Seveso</button>
+            <button onclick="showInspection('brand')">WPI Gebouw & Brandveiligheid</button>
+        </section>
+
+        <!-- Het inspectieformulier -->
+        <form id="wpi-form" class="hidden">
+            <div class="meta-data">
+                <h3>Algemene Gegevens</h3>
+                <label>Inspector: <input type="text" id="inspector_name" required></label>
+                <label>Datum: <input type="date" id="inspection_date" required></label>
+                <label>Locatie/Project: <input type="text" id="inspection_location" required></label>
+            </div>
+
+            <div id="form-questions">
+                <!-- Vragen worden hier dynamisch ingeladen via JS -->
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="resetForm()">Annuleren</button>
+                <button type="submit" class="btn-success">Exporteer naar PDF</button>
+            </div>
+        </form>
     </main>
 
-    <!-- Koppel je JavaScript bestand (check ook hier de bestandsnaam) -->
     <script src="js/main.js"></script>
-
-    <!-- Registreer de Service Worker (noodzakelijk voor een offline PWA) -->
     <script>
+        // Registreer de Service Worker voor offline gebruik
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker succesvol geregistreerd.');
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registratie mislukt:', error);
-                    });
+                navigator.serviceWorker.register('sw.js').catch(err => console.error(err));
             });
         }
     </script>
